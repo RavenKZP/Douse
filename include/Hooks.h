@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Settings.h"
+
 namespace Hooks {
     struct ProcessInWaterHook {
         static bool ProcessInWater(RE::Actor* a_this, RE::hkpCollidable* a_collidable, float a_waterHeight,
@@ -13,7 +15,7 @@ namespace Hooks {
                 float actorHeight = a_this->GetHeight();
                 auto actorPos = a_this->GetPosition();
                 auto waterHeight = a_this->GetWaterHeight();
-                if (actorPos.z + (actorHeight * 0.5f) < waterHeight) {  // 50% submerged
+                if (actorPos.z + (actorHeight * Settings::GetSingleton()->Submerged) < waterHeight) {
                     a_this->DoDamage(99999, nullptr, true);
                 }
             }
