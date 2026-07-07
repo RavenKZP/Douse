@@ -16,7 +16,13 @@ public:
                 auto pos = line.find('=');
                 if (pos != std::string::npos) {
                     std::string value = line.substr(pos + 1);
+                    if (value.empty()) {
+                        value = "0.5";  // Default value if not specified
+                    }
                     Submerged = std::stof(value);
+                    if (Submerged < 0.0f || Submerged > 1.0f) {
+                        Submerged = 0.5f;  // Reset to default if out of range
+                    }
                 }
             }
         }
