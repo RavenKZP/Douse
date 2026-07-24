@@ -79,7 +79,6 @@ namespace Hooks {
     inline void InstallHooks() {
         ProcessInWaterHook::ProcessInWater_ =
             REL::Relocation<std::uintptr_t>(RE::VTABLE_Character[0])
-                .write_vfunc(REL::Relocate(0x9C, 0x9C, 0x9E), ProcessInWaterHook::ProcessInWater);
-        // VR might not work
+                .write_vfunc(REL::Relocate(0x9C, 0x9C, 0x9D), ProcessInWaterHook::ProcessInWater);
     }
 }
