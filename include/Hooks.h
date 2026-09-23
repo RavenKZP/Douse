@@ -16,7 +16,8 @@ std::pair<float, bool> get_water_height(const RE::NiPoint3& a_pos) {
     bool isLava = false;
 
     if (const auto waterManager = RE::TESWaterSystem::GetSingleton()) {
-        const RE::BSSpinLockGuard locker(waterManager->lock);
+        // No need to lock the water manager here, as we are only reading from it.
+        // const RE::BSSpinLockGuard locker(waterManager->lock);
 
         for (const auto& waterObjectPtr : waterManager->waterObjects) {
             const auto waterObject = waterObjectPtr.get();
